@@ -1,0 +1,69 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: black;
+}
+
+.img-index{
+    width: 100%;
+    height: 300px
+}
+.btn-design {
+    background-color: aliceblue; /* Cor de fundo do botão */
+    border: double;
+    color: black; /* Cor do texto do botão */
+    padding: 0.5rem 1rem; /* Padding do botão */
+    margin: 0.2rem; /* Margem entre botões */
+    border-radius: 0.25rem; /* Bordas arredondadas do botão */
+    cursor: pointer; /* Mostra o cursor como ponteiro */
+    text-align: center; /* Alinha o texto do botão */
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.btn-design:hover {
+    background-color: cornsilk; /* Cor do botão ao passar o mouse */
+}
+
+.card {
+    background-color: #f8f9fa; 
+    border: 1px solid #dee2e6; 
+}
+
+h1 {
+    color: white; /* Cor do título */
+    
+}
+
+p a {
+    color:white; /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado do link */
+    
+}
+.btn-cab {
+    background-color: white; /* Cor de fundo do botão */
+    color: black; /* Cor do texto do botão */
+    padding: 0.5rem 1rem; /* Padding do botão */
+    margin: 0.2rem; /* Margem entre botões */
+    border-radius: 0.25rem; /* Bordas arredondadas do botão */
+    cursor: pointer; /* Mostra o cursor como ponteiro */
+    text-align: center; /* Alinha o texto do botão */
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
