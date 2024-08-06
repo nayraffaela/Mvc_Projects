@@ -56,4 +56,35 @@ ul {
 .carousel-caption {
     bottom: 20px; /* Ajuste a posição da legenda conforme necessário */
 }
+.outer-box {
+    border: 2px solid double; /* Cor da borda da caixa grande */
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.inner-box {
+    border: 2px solid double; /* Cor da borda da caixa menor */
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: black
+
+}
+
+.inner-box img {
+    width: 100px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 4px;
+
+}
+
+.box-container {
+    margin-bottom: 20px;
+}
+.title {
+    font-family: 'Agency FB';
+}
+}
+
 
