@@ -1,12 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Games_Mvc.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View(); // Retorna a view para a página inicial
+    }
+
+    public IActionResult Jogo()
+    {
+        return View(); // Retorna a view para a página de jogos
+    }
+
+    public IActionResult Privacy()
+    {
+        return View(); // Retorna a view para a página de privacidade
+    }
+
+    public IActionResult Contato()
+    {
+        return View(); // Retorna a view para a página de contato
+    }
+    public IActionResult Guias()
+    {
+        return View();
     }
 }

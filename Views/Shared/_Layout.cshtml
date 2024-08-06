@@ -12,6 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
+                <img src="~/imgs/HavenGames1.PNG" alt="Logo" class="img-fluid" style="max-width: 200px;">
                 <a class="btn-cab" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -19,11 +20,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <!-- Esta <ul> é uma lista não ordenada que contém os itens de navegação. A classe "navbar-nav" estiliza a lista como itens de navegação do Bootstrap. -->
                         <li class="nav-item">
-                            <a class="btn-cab" asp-area="" asp-controller="Home" asp-action="Index">Jogos</a>
+                            <a class="btn-cab" asp-area="" asp-controller="Jogos" asp-action="Index">Jogos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn-cab" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="btn-cab" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn-cab" asp-area="" asp-controller="Home" asp-action="Contato">Contato</a>
@@ -39,11 +41,17 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer text-muted bg-white">
         <div class="container">
-            &copy; 2024 - Games_Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row justify-content-center">
+                <div class="col-md-4 custom-width">
+                    &copy; 2024 - Games_Mvc - <a href="/privacy">Privacy</a>
+                </div>
+            </div>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

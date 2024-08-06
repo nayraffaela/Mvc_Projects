@@ -1,0 +1,19 @@
+﻿@model Games_Mvc.Models.Jogo
+
+@{
+    ViewData["Title"] = "Sobre o Jogo";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h2>@Model.Nome</h2>
+    <p><strong>Gênero:</strong> @Model.Genero</p>
+    <p><strong>Plataforma:</strong> @Model.Plataforma</p>
+    <p><strong>Imagem:</strong></p>
+    <img src="@Model.ImagemUrl" alt="Imagem do jogo" style="max-width: 100%; height: auto;" />
+    <p><strong>Descrição:</strong> @Model.Descricao</p> <!-- Adicione a propriedade Descricao ao modelo se necessário -->
+
+    <a asp-action="Personagens" asp-route-jogoId="@Model.Id" class="button">Ver Personagens</a>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="button secondary">Voltar aos Detalhes</a>
+</div>

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Games_Mvc.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Games_Mvc.Models;
 
 namespace Games_Mvc.Controllers
 {
@@ -18,74 +16,65 @@ namespace Games_Mvc.Controllers
             _context = context;
         }
 
-        // GET: Jogoes
+        // GET: Jogos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Jogos.ToListAsync());
+            var jogos = await _context.Jogos
+                .Include(j => j.Personagens)
+                .ToListAsync();
+            return View(jogos);
         }
 
-        // GET: Jogoes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var jogo = await _context.Jogos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (jogo == null)
-            {
-                return NotFound();
-            }
-
-            return View(jogo);
-        }
-
-        // GET: Jogoes/Create
+        // GET: Jogos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Jogoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Jogos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Plataforma,Genero,ImagemUrl")] Jogo jogo)
+        public async Task<IActionResult> Create(Jogo jogo, List<Personagem> personagens)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jogo);
+                _context.Jogos.Add(jogo);
                 await _context.SaveChangesAsync();
+
+                if (personagens != null)
+                {
+                    foreach (var personagem in personagens)
+                    {
+                        personagem.JogoId = jogo.Id;
+                        _context.Personagens.Add(personagem);
+                    }
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(jogo);
         }
 
-        // GET: Jogoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Jogos/Edit/5
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var jogo = await _context.Jogos
+                .Include(j => j.Personagens)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
-            var jogo = await _context.Jogos.FindAsync(id);
             if (jogo == null)
             {
                 return NotFound();
             }
+
             return View(jogo);
         }
 
-        // POST: Jogoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Jogos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Plataforma,Genero,ImagemUrl")] Jogo jogo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Plataforma,Genero,ImagemUrl,Descricao")] Jogo jogo, List<Personagem> personagens)
         {
             if (id != jogo.Id)
             {
@@ -98,6 +87,22 @@ namespace Games_Mvc.Controllers
                 {
                     _context.Update(jogo);
                     await _context.SaveChangesAsync();
+
+                    var existingPersonagens = _context.Personagens
+                        .Where(p => p.JogoId == jogo.Id)
+                        .ToList();
+
+                    _context.Personagens.RemoveRange(existingPersonagens);
+
+                    if (personagens != null)
+                    {
+                        foreach (var personagem in personagens)
+                        {
+                            personagem.JogoId = jogo.Id;
+                            _context.Personagens.Add(personagem);
+                        }
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -115,37 +120,19 @@ namespace Games_Mvc.Controllers
             return View(jogo);
         }
 
-        // GET: Jogoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Jogos/Details/5
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var jogo = await _context.Jogos
+                .Include(j => j.Personagens)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (jogo == null)
             {
                 return NotFound();
             }
 
             return View(jogo);
-        }
-
-        // POST: Jogoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var jogo = await _context.Jogos.FindAsync(id);
-            if (jogo != null)
-            {
-                _context.Jogos.Remove(jogo);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool JogoExists(int id)

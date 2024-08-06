@@ -1,0 +1,10 @@
+﻿.personagem-imagem {
+    max-width: 100%; /* Ajuste conforme necessário */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.carousel-slide {
+    text-align: center; /* Centraliza o conteúdo */
+}

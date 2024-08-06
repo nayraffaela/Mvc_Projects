@@ -11,7 +11,6 @@ namespace Games_Mvc.Models
         }
 
         public DbSet<Jogo> Jogos { get; set; }
-        public DbSet<Cena> Cenas { get; set; }
         public DbSet<Personagem> Personagens { get; set; }
 
     }

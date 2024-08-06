@@ -19,7 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: black;
+  background-color: white;
 }
 
 .img-index{
@@ -48,12 +48,12 @@ body {
 }
 
 h1 {
-    color: white; /* Cor do título */
-    
+    color: black; /* Cor do título */
+
 }
 
 p a {
-    color:white; /* Cor do link */
+    color:black; /* Cor do link */
     text-decoration: none; /* Remove o sublinhado do link */
     
 }
@@ -67,3 +67,12 @@ p a {
     text-align: center; /* Alinha o texto do botão */
     text-decoration: none; /* Remove o sublinhado dos links */
 }
+.img-fluid {
+    width:150px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção original da imagem */
+    max-width: 100%; /* Garante que a imagem não exceda o contêiner */
+}
+.custom-width {
+    height: 10px;
+}
+

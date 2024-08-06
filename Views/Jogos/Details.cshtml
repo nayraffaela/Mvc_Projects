@@ -3,40 +3,90 @@
 @{
     ViewData["Title"] = "Detalhes";
 }
-
+<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
 <h1>Detalhes</h1>
 
 <div>
-    <h4>Jogo</h4>
+    <h4>JOGO</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Plataforma)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Plataforma)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genero)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Genero)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagemUrl)
+        <dt class="col-sm-2">
+            Imagem
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImagemUrl)
+        <dd class="col-sm-10">
+            <img src="@Model.ImagemUrl" alt="Imagem do jogo" style="max-width: 150px; height: 100px;" />
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <h4>SOBRE O JOGO</h4>
+    <hr />
+    <p class="textos-jogo">
+        @Html.DisplayFor(model => model.Descricao)
+    </p>
+    <hr />
+</div>
+
+<div>
+    <h4>Personagens</h4>
+    @if (Model.Personagens != null && Model.Personagens.Any())
+    {
+        <div id="personagensCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (var personagem in Model.Personagens.Select((p, i) => new { p, i }))
+                {
+                    var isActive = personagem.i == 0 ? "active" : "";
+                    <div class="carousel-item @isActive">
+                        <img src="@personagem.p.ImagemUrl" class="d-block w-100" alt="@personagem.p.Nome">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>@personagem.p.Nome</h5>
+                            <p>@personagem.p.Descricao</p>
+                        </div>
+                    </div>
+                }
+            </div>
+            <a class="carousel-control-prev" href="#personagensCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#personagensCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    }
+    else
+    {
+        <p>Não há personagens para exibir.</p>
+    }
+</div>
+
+<div>
+    <h4>MUNDOS</h4>
+    <hr />
+    <!-- Aqui você pode incluir uma lista ou descrição dos mundos -->
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="button">Editar</a>
+    <a asp-action="Index" class="button secondary">Voltar à lista</a>
 </div>

@@ -1,0 +1,59 @@
+﻿body {
+    background-color: #f8f9fa; /* Cor de fundo leve */
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #343a40; /* Cor escura para o título */
+    margin-bottom: 20px;
+}
+
+h5 {
+    color: black; /* Cor para o subtítulo */
+    margin-bottom: 20px;
+    font-family: 'Agency FB';
+}
+
+h4 {
+    color: black; /* Cor para os subtítulos das seções */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: black; /* Cor do texto do parágrafo */
+    line-height: 1.6;
+    font-family: 'Agency FB';
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente para o texto */
+    color: white;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 400px; /* Ajuste a altura conforme necessário */
+    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner sem distorcer */
+}
+
+.carousel-caption {
+    bottom: 20px; /* Ajuste a posição da legenda conforme necessário */
+}
+

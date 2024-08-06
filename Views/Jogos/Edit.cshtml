@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var personagens = Model.Personagens.ToList(); // Converte IEnumerable para List
 }
 
 <h1>Edit</h1>
@@ -9,7 +10,7 @@
 <h4>Jogo</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
@@ -34,6 +35,30 @@
                 <span asp-validation-for="ImagemUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <textarea asp-for="Descricao" class="form-control"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4>Personagens</h4>
+                <hr />
+                <div id="personagemContainer">
+                    <div class="form-group">
+                        <label>Nome do Personagem</label>
+                        <input type="text" name="personagens[0].Nome" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição do Personagem</label>
+                        <textarea name="personagens[0].Descricao" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Imagem URL do Personagem</label>
+                        <input type="text" name="personagens[0].ImagemUrl" class="form-control" />
+                    </div>
+                </div>
+                <button type="button" id="addPersonagem" class="btn btn-secondary">Adicionar Personagem</button>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -45,5 +70,29 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+<script>
+    document.getElementById('addPersonagem').addEventListener('click', function () {
+        var container = document.getElementById('personagemContainer');
+        var currentCount = container.getElementsByClassName('form-group').length / 3; // Ajuste para o número de campos
+        var newField = `
+                <div class="form-group">
+                    <label>Nome do Personagem</label>
+                    <input type="text" name="personagens[${currentCount}].Nome" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Descrição do Personagem</label>
+                    <textarea name="personagens[${currentCount}].Descricao" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Imagem URL do Personagem</label>
+                    <input type="text" name="personagens[${currentCount}].ImagemUrl" class="form-control" />
+                </div>
+            `;
+        container.insertAdjacentHTML('beforeend', newField);
+    });
+</script>

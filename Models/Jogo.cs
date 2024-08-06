@@ -18,5 +18,8 @@ namespace Games_Mvc.Models
 
         [StringLength(255)]
         public string ImagemUrl { get; set; }
+
+        public string Descricao { get; set; } // Adicione essa linha se necessário
+        public IEnumerable<Personagem> Personagens { get; set; }
     }
 }

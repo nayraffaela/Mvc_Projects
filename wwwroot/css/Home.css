@@ -1,0 +1,45 @@
+﻿h1{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:black
+}
+h4{
+    font-family:Agency FB;
+    color: black
+}
+.btn-cab {
+    font-family: Agency FB;
+    font-size: larger;
+    text-transform:uppercase;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: white;
+}
+
+.card-text{
+    text-align:justify;
+    font-family: Agency FB;
+}
+
+.card-title {
+    font-family: Agency FB;
+    font-size: larger;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: Agency FB;
+    font-size: larger;
+}
+.card-img-top {
+    transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave ao efeito */
+    width: 100%; /* Ajuste o valor conforme necessário */
+    height: 270px; /* Mantém a proporção da imagem */
+    max-width: 100%; /* Ajuste o valor conforme necessário */
+}
+
+.card-img-top:hover {
+     transform: scale(1.1); /* Aumenta a imagem em 10% ao passar o mouse */
+}
+

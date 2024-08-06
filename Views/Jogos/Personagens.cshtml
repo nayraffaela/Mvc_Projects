@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Games_Mvc.Models.Personagem>
+
+@{
+    ViewData["Title"] = "Personagens";
+    var personagens = Model.ToList();
+}
+<link rel="stylesheet" href="~/css/Personagens.css" asp-append-version="true" />
+<h1>Personagens</h1>
+
+<div class="carousel">
+    <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
+    <div class="carousel-slides">
+        @for (int i = 0; i < personagens.Count; i++)
+        {
+            <div class="carousel-slide" style="display: @(i == 0 ? "block" : "none")">
+                <img src="@personagens[i].ImagemUrl" alt="@personagens[i].Nome" class="personagem-imagem" />
+                <h2>@personagens[i].Nome</h2>
+                <p>@personagens[i].Descricao</p>
+            </div>
+        }
+    </div>
+    <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+
+<div>
+    <a asp-action="Details" asp-route-id="@ViewData["JogoId"]">Voltar aos Detalhes do Jogo</a>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = (i === index) ? 'block' : 'none';
+        });
+    }
+
+    function moveSlide(step) {
+        currentSlide += step;
+        if (currentSlide >= slides.length) {
+            currentSlide = 0;
+        } else if (currentSlide < 0) {
+            currentSlide = slides.length - 1;
+        }
+        showSlide(currentSlide);
+    }
+</script>
